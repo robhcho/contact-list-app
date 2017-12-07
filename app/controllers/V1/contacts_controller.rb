@@ -19,5 +19,4 @@ class V1::ContactsController < ApplicationController
   #   i += 1
   #   end
   #   render json: contact_hashes
-
 end

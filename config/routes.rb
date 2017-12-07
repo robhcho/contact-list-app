@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
-  get '/contact_list' => 'contacts#contact_info'
-  get '/all_contacts' => 'contacts#all_contacts'
+  # namespace :v1 do
+  #   get '/contact_list' => 'contacts#contact_info'
+  # end
+
+  namespace :v2 do
+    get '/contacts' => 'contacts#index'
+    get '/contacts/:id' => 'contacts#show'
+    post '/contacts' => 'contacts#create'
+    patch '/contacts/:id' => 'contacts#update'
+  end
 end
