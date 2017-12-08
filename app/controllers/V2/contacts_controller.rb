@@ -13,6 +13,7 @@ class V2::ContactsController < ApplicationController
   def create
     contact = Contact.new(
       name: params['name'],
+      middle_name: params['middle_name'],
       email: params['email'],
       phone_number: params['phone_number']
     )

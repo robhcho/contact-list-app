@@ -26,6 +26,8 @@ elsif user_input == '3'
   the_params = {}
   p 'Enter the name of new contact'
   the_params['name'] = gets.chomp
+  p 'Enter the middle name of contact'
+  the_params['middle_name']
   p 'Enter the email address of new contact'
   the_params['email'] = gets.chomp
   p 'Enter the phone number of new contact'
