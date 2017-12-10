@@ -26,15 +26,19 @@ elsif user_input == '3'
   the_params = {}
   p 'Enter the name of new contact'
   the_params['name'] = gets.chomp
-  p 'Enter the middle name of contact'
-  the_params['middle_name']
   p 'Enter the email address of new contact'
   the_params['email'] = gets.chomp
   p 'Enter the phone number of new contact'
   the_params['phone_number'] = gets.chomp
+  p 'Enter the middle name of contact'
+  the_params['middle_name'] = gets.chomp
+  p 'Enter a short bio of the new contact'
+  the_params['bio'] = gets.chomp
   response = Unirest.post("#{base_url}/contacts", parameters: the_params)
   p response.body
-# elsif user_input == '4'
+elsif user_input == '4'
+  the_params = {}
+  p "Enter the new name of the contact. it is currently #{contact['name']}"
 
 #   the_params = {}
 #   p 'Which contact would you like to update?'
