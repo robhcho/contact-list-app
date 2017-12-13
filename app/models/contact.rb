@@ -1,8 +1,15 @@
 class Contact < ApplicationRecord
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :email, presence: true
+  validates :email, uniqueness: true
+  
   def as_json
     {
-      name: name,
+      id: id,
+      first_name: first_name,
       middle_name: middle_name,
+      last_name: last_name,
       email: email,
       phone_number: phone_number,
       bio: bio,

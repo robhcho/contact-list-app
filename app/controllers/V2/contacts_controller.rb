@@ -10,30 +10,43 @@ class V2::ContactsController < ApplicationController
     render json: contact.as_json
   end
 
-  def create
+  def create   
     contact = Contact.new(
-      name: params['name'],
+      first_name: params['first_name'],
+      last_name: params['last_name'],
       middle_name: params['middle_name'],
       email: params['email'],
       phone_number: params['phone_number'],
       bio: params['bio']
+      
     )
-    contact.save
-
-    render json: contact.as_json
+    if contact.save
+      render json: contact.as_json
+    else
+      render json: {error: contact.errors.full_messages }
+    end
   end
 
   def update
-    contact = Contact.find_by(params[:id])
-    contact.name = params['name'] || contact.name
+    id_number = params[:id]
+    contact = Contact.find_by(id: id_number)
+    contact.first_name = params['first_name'] || contact.first_name
+    contact.last_name = params['last_name'] || contact.last_name
     contact.email = params['email'] || contact.email
     contact.phone_number = params['phone_number'] || contact.phone_number
+    contact.middle_name = params['middle_name'] || contact.middle_name
+    contact.bio = params['bio'] || contact.bio
+    if contact.save
+      render json: contact.as_json
+    else
+      render json: { error: contact.errors.full_messages }
+    end
   end
 
-  def delete
+  def destroy
     id_number = params['id']
     contact = Contact.find_by(id: id_number)
-    product.destroy
+    contact.delete
   end
   # def contact_info
   #   first_contact = Contact.first
