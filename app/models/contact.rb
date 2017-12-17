@@ -3,6 +3,7 @@ class Contact < ApplicationRecord
   validates :last_name, presence: true
   validates :email, presence: true
   validates :email, uniqueness: true
+  belongs_to :user
   
   def as_json
     {
@@ -14,11 +15,12 @@ class Contact < ApplicationRecord
       phone_number: phone_number,
       bio: bio,
       created_at: created_at.strftime('%b %e, %l:%M %p')
-      # updated_at: month_date_time
     }
   end
 
-  # def month_date_time
-  #   strftime ('%b %e, %l:%M %p')
+  # def current_user
+  #   if current_user
+  #     contacts = current_user.contacts
+
   # end
 end

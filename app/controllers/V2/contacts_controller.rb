@@ -1,7 +1,12 @@
 class V2::ContactsController < ApplicationController
   def index
-    contacts = Contact.all
-    render json: contacts.as_json
+    if current_user
+      # contacts = Contact.where(user_id: current_user.id)
+      contacts = current_user.contacts
+      render json: contacts.as_json
+    else
+      render json: { message: 'log in to see your contacts' }
+    end
   end
 
   def show
@@ -10,7 +15,7 @@ class V2::ContactsController < ApplicationController
     render json: contact.as_json
   end
 
-  def create   
+  def create
     contact = Contact.new(
       first_name: params['first_name'],
       last_name: params['last_name'],
@@ -18,12 +23,11 @@ class V2::ContactsController < ApplicationController
       email: params['email'],
       phone_number: params['phone_number'],
       bio: params['bio']
-      
     )
     if contact.save
       render json: contact.as_json
     else
-      render json: {error: contact.errors.full_messages }
+      render json: { error: contact.errors.full_messages }
     end
   end
 
