@@ -7,6 +7,9 @@ class V2::ContactsController < ApplicationController
     else
       render json: { message: 'log in to see your contacts' }
     end
+    # group = Group.find_by(id: params[:input_group_id])
+    # contacts = group.contacts
+    # render json: contacts.as_json
   end
 
   def show

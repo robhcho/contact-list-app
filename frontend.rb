@@ -10,6 +10,7 @@ require 'pp'
 while true
   p 'Choose an option'
   p '[1] Show all contacts'
+  p '[1b] View a contact in a particular group'
   p '[2] Show a particular contact'
   p '[3] Add a new contact'
   p '[4] Update a contact'
@@ -23,6 +24,11 @@ while true
   user_input = gets.chomp
   if user_input == '1'
     response = Unirest.get("#{base_url}/contacts")
+    pp response.body
+  elsif user_input == '1b'
+    p 'Enter the id of the group you would like to see'
+    user_group_id = gets.chomp
+    response = Unirest.get("#{base_url}/contacts?input_group_id=#{user_group_id}")
     pp response.body
   elsif user_input == '2'
     p 'Which contact would you like to view?'

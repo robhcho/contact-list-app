@@ -4,6 +4,8 @@ class Contact < ApplicationRecord
   validates :email, presence: true
   validates :email, uniqueness: true
   belongs_to :user
+  has_many :contact_groups
+  has_many :contacts, through: :contact_groups
   
   def as_json
     {
@@ -14,6 +16,7 @@ class Contact < ApplicationRecord
       email: email,
       phone_number: phone_number,
       bio: bio,
+      group: group.contacts,
       created_at: created_at.strftime('%b %e, %l:%M %p')
     }
   end
