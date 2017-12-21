@@ -10,6 +10,7 @@ class V2::ContactsController < ApplicationController
     # group = Group.find_by(id: params[:input_group_id])
     # contacts = group.contacts
     # render json: contacts.as_json
+
   end
 
   def show
